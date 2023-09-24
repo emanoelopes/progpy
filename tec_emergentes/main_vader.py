@@ -17,6 +17,6 @@ def analisar_sentimento(texto):
     return "Neutro"
 
 # Exemplo de uso
-mensagem = ""
+mensagem = input("Ditige uma mensagem: ")
 sentimento = analisar_sentimento(mensagem)
 print("A mensagem é: " + str(sentimento))

@@ -32,7 +32,7 @@ def analisar_sentimento_vader(texto):
   else:
     return "Neutro"
 # Exemplo de uso
-mensagem = "Ele está entumecido."
+mensagem =  input("Digite uma mensagem: ") 
 sentimento = analisar_sentimento_vader(mensagem)
 print("[vader]A mensagem é: " + str(sentimento))
 sentimento = analisar_sentimento_TextBlob(mensagem)
