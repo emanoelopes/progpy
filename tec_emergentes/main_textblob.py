@@ -1,6 +1,9 @@
 from textblob import TextBlob
+import pandas as pd
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from textblob.sentiments import NaiveBayesAnalyzer
+
 
 # Função para realizar a análise de sentimento
 def analisar_sentimento_TextBlob(texto):
@@ -16,8 +19,14 @@ def analisar_sentimento_TextBlob(texto):
     return "Negativo"
   else:
     return "Neutro"
+
+
 # Baixe os recursos necessários (caso ainda não tenha feito isso)
 nltk.download('vader_lexicon')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('brown')
 # Função para realizar a análise de sentimento
 def analisar_sentimento_vader(texto):
   # Inicialize o SentimentIntensityAnalyzer
@@ -32,16 +41,25 @@ def analisar_sentimento_vader(texto):
   else:
     return "Neutro"
 # Exemplo de uso
-
-
+"""
+Análise de sentimentos de conversas extraídas de um grupo de condomínio.
+"""
 frases = []
-with open("palmeiras.txt", encoding="utf-8") as arq:
+with open("../../palmeiras.txt", encoding="utf-8") as arq:
     for lin in arq:
         frases += lin.splitlines()
-print(frases)
+df = pd.DataFrame(columns = ['linha', 'Polaridade', 'Subjetividade', 'Classificação'])
+blob = TextBlob("".join(frases), analyzer=NaiveBayesAnalyzer())
+for frase in blob.sentences:
+    df.loc[len(df)] = [str(frase),frase.polarity, frase.subjectivity, frase.sentiment]
+print(df)
+print(df.loc[[10400]])
+stm = analisar_sentimento_vader(frases)
+print("[vader]O grupo do condomínio é: " + str(stm))
+stm = analisar_sentimento_TextBlob(frases)
+print("[TextBlob]O Grupo do condomínio é: " + str(stm))
 
-
-mensagem =  input("Digite uma mensagem: ")
+mensagem = input("Digite uma mensagem: ")
 sentimento = analisar_sentimento_vader(mensagem)
 print("[vader]A mensagem é: " + str(sentimento))
 sentimento = analisar_sentimento_TextBlob(mensagem)
