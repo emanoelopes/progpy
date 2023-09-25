@@ -32,7 +32,16 @@ def analisar_sentimento_vader(texto):
   else:
     return "Neutro"
 # Exemplo de uso
-mensagem =  input("Digite uma mensagem: ") 
+
+
+frases = []
+with open("palmeiras.txt", encoding="utf-8") as arq:
+    for lin in arq:
+        frases += lin.splitlines()
+print(frases)
+
+
+mensagem =  input("Digite uma mensagem: ")
 sentimento = analisar_sentimento_vader(mensagem)
 print("[vader]A mensagem é: " + str(sentimento))
 sentimento = analisar_sentimento_TextBlob(mensagem)
