@@ -53,7 +53,7 @@ blob = TextBlob("".join(frases), analyzer=NaiveBayesAnalyzer())
 for frase in blob.sentences:
     df.loc[len(df)] = [str(frase),frase.polarity, frase.subjectivity, frase.sentiment]
 print(df)
-print(df.loc[[10400]])
+#print(df.loc[[10]])
 stm = analisar_sentimento_vader(frases)
 print("[vader]O grupo do condomínio é: " + str(stm))
 stm = analisar_sentimento_TextBlob(frases)
