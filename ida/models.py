@@ -14,4 +14,4 @@ def evaluate_models(df):
     y_pred = model.predict(X_test)
 
     mae = mean_absolute_error(y_test, y_pred)
-    return {'MAE': mae}from sklearn.metrics import mean_absolute_error
+    return {'MAE': mae}
