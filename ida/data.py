@@ -9,4 +9,13 @@ def create_data():
         "Equações": np.random.uniform(3.0, 10.0, 50).round(1),
         "Geometria Básica": np.random.uniform(3.0, 10.0, 50).round(1),
     }
+    pre_reqs = {
+        "Frações": ["Números Inteiros"],
+        "Equações": ["Números Inteiros", "Frações"],
+        "Geometria Básica": ["Números Inteiros", "Frações"],
+        "Funções": ["Equações"],
+        "Trigonometria": ["Geometria Básica", "Equações"],
+        "Probabilidade": ["Frações", "Equações"],
+        "Estatística": ["Frações", "Probabilidade"],
+    }
     return pd.DataFrame(data)

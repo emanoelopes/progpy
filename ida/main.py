@@ -1,17 +1,13 @@
 from data import create_data
 from models import evaluate_models
-from plots import plot_scatter
+from prerequisite_issues import identify_prerequisite_issues
 
 def main():
-    # Criar dados
+    # Criando o DataFrame
     df = create_data()
 
     # Avaliar modelos
     metrics = evaluate_models(df)
-    print("Métricas dos Modelos:", metrics)
     
-    # Gerar gráfico de dispersão
-    plot_scatter(df)
-
 if __name__ == "__main__":
     main()
