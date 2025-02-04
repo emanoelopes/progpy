@@ -1,17 +1,32 @@
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error
+from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-def evaluate_models(df):
-    X = df[["Números Inteiros", "Frações"]]
-    y = df["Equações"]
+def evaluate_models(X_train, X_test, y_train, y_test):
+    models = {
+        'Random Forest': RandomForestRegressor(random_state=42),
+        'Linear Regression': LinearRegression(),
+        'Support Vector Regression': SVR()
+    }
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = RandomForestRegressor(random_state=42)
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
+    results = {}
 
-    mae = mean_absolute_error(y_test, y_pred)
-    return {'MAE': mae}
+    for name, model in models.items():
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
+        # Calcular métricas
+        mae = mean_absolute_error(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
+        rmse = np.sqrt(mse)
+        r2 = r2_score(y_test, y_pred)
+
+        results[name] = {
+            'MAE': mae,
+            'RMSE': rmse,
+            'R²': r2
+        }
+
+    return results
