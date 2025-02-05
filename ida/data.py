@@ -18,4 +18,4 @@ def create_data():
         "Probabilidade": ["Frações", "Equações"],
         "Estatística": ["Frações", "Probabilidade"],
     }
-    return pd.DataFrame(data)
+    return pd.DataFrame(data), pre_reqs

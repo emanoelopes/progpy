@@ -1,26 +1,30 @@
+from unittest import result
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.svm import SVR
+from sklearn.svm import SVR # Support Vector Regression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-def evaluate_models(X_train, X_test, y_train, y_test):
-    models = {
-        'Random Forest': RandomForestRegressor(random_state=42),
+models = {
+        'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
         'Linear Regression': LinearRegression(),
-        'Support Vector Regression': SVR()
+        'Support Vector Regression': SVR(kernel='linear')
     }
 
-    results = {}
+def evaluate_models(X_train, X_test, y_train, y_test):
 
+    results = {}
+    
     for name, model in models.items():
+        # Treinar o modelo
         model.fit(X_train, y_train)
+
+        # Fazer previsões
         y_pred = model.predict(X_test)
 
         # Calcular métricas
         mae = mean_absolute_error(y_test, y_pred)
         mse = mean_squared_error(y_test, y_pred)
-        rmse = np.sqrt(mse)
         r2 = r2_score(y_test, y_pred)
 
         results[name] = {
@@ -30,3 +34,5 @@ def evaluate_models(X_train, X_test, y_train, y_test):
         }
 
     return results
+
+print("Métricas dos Modelos:", result)

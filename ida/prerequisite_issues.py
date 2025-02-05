@@ -8,6 +8,7 @@ def identify_prerequisite_issues(df, pre_reqs, threshold=5.0):
     recommendations = {}
     metrics_summary = {}
 
+    # Iteração sobre Disciplinas
     for subject, reqs in pre_reqs.items():
         X = df[reqs]
         y = df[subject]
@@ -32,6 +33,7 @@ def identify_prerequisite_issues(df, pre_reqs, threshold=5.0):
         importance = model.feature_importances_
         importance_dict = {req: imp for req, imp in zip(reqs, importance)}
 
+        # Recomendações
         for _, row in df.iterrows():
             if row[subject] < threshold:
                 aluno = row["Aluno"]
@@ -42,6 +44,7 @@ def identify_prerequisite_issues(df, pre_reqs, threshold=5.0):
                     if req not in recommendations[aluno]:
                         recommendations[aluno].append((req, importance_dict[req]))
 
+    # Ordenação das recomendações
     for aluno in recommendations:
         recommendations[aluno] = sorted(recommendations[aluno], key=lambda x: x[1], reverse=True)
 
