@@ -6,6 +6,9 @@ def main():
     # Criando o DataFrame
     df, pre_reqs = create_data()
 
+    print(df.columns.to_list())
+
+
     # Identificando os pré-requisitos que os alunos precisam melhorar
     recommendations, metrics_summary = identify_prerequisite_issues(df, pre_reqs)
 
