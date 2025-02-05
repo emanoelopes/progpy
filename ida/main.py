@@ -6,10 +6,7 @@ def main():
     # Criando o DataFrame
     df, pre_reqs = create_data()
 
-    # Dividir os dados em conjuntos de treino e teste
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Chamar a função identidy_prerequisite_issues com pre_reqs gerado e data.py
+    # Identificando os pré-requisitos que os alunos precisam melhorar
     recommendations, metrics_summary = identify_prerequisite_issues(df, pre_reqs)
 
     # Avaliar modelos

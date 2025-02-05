@@ -29,7 +29,6 @@ def evaluate_models(X_train, X_test, y_train, y_test):
 
         results[name] = {
             'MAE': mae,
-            'RMSE': rmse,
             'R²': r2
         }
 
