@@ -1,6 +1,5 @@
-# Projeto de Análise de Desempenho Estudantil
-
-Este projeto visa analisar o desempenho dos alunos em diferentes disciplinas mediante a geração de gráficos e avaliação de modelos.
+# Projeto de Identificaçãço de Dificuldade de Aprendizagem (IDA)
+Este projeto visa identificar as dificuldades de aprendizagem e prever o desempenho dos alunos em diferentes disciplinas.
 
 ## Dependências
 
@@ -25,13 +24,9 @@ Este projeto visa analisar o desempenho dos alunos em diferentes disciplinas med
 
 - Geração de dados fictícios de desempenho estudantil.
 - Avaliação de modelos de regressão para prever desempenho.
-- Geração de gráfico de dispersão para visualização de relações entre disciplinas.# progpy
-Módulos escritos durante estudos de revisão de programação em Python.
 
 ### Criando um ambiente virtual
 $ python -m venv ~/tec_emergentes
 
 ### Ativando um ambiente virtual
 $ source ~/tec_emergentes/bin/activate
-
-
