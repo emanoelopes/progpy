@@ -1,5 +1,5 @@
-# Projeto de Identificaçãço de Dificuldade de Aprendizagem (PIDA)
-Este projeto visa identificar as dificuldades de aprendizagem e prever o desempenho dos alunos em diferentes disciplinas.
+# Software de Identificaçãço de Dificuldade de Aprendizagem (IDA)
+Este sistema visa identificar as dificuldades de aprendizagem e prever o desempenho dos alunos em diferentes disciplinas.
 
 ## Dependências
 
