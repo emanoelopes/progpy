@@ -17,8 +17,12 @@ def main():
     print("Recomendações:", recommendations)
     print("\nResumo das Métricas:", metrics_summary)
 
-    # Criando um arquivo csv com os resultados
-    gerar_csv(df, 'output.csv')
+    # # Criando um arquivo csv com os resultados
+    # gerar_csv(df, 'output.csv')
+    
+    # Exporta o DataFrame para um arquivo CSV 
+    df.to_csv('output1.csv', index=False, encoding='utf-8')
+    print("Arquivo CSV 'output.csv' criado com sucesso.")
 
 if __name__ == "__main__":
     main()
