@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unificador de Datasets</title>
+</head>
+<body>
+    <h1>Unificador de Datasets</h1>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="file1">Dataset 1 (CSV):</label>
+            <input type="file" name="file1" required>
+        </div>
+        <br>
+        <div>
+            <label for="file2">Dataset 2 (CSV):</label>
+            <input type="file" name="file2" required>
+        </div>
+        <br>
+        <div>
+            <label for="merge_column">Coluna de Merge:</label>
+            <input type="text" name="merge_column" required>
+        </div>
+        <br>
+        <div>
+            <label for="merge_type">Tipo de Merge:</label>
+            <select name="merge_type">
+                <option value="inner">Inner</option>
+                <option value="outer">Outer</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit">Unificar Datasets</button>
+    </form>
+</body>
+</html>
