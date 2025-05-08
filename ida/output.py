@@ -7,9 +7,9 @@ def gerar_csv(dados, nome_arquivo):
         # Escreva os dados
         escritor.writerows(dados)
 
-# Exemplo de uso:
-dados = [
-    {'nome': 'João', 'idade': 30, 'cidade': 'São Paulo'},
-    {'nome': 'Maria', 'idade': 25, 'cidade': 'Rio de Janeiro'},
-    {'nome': 'Pedro', 'idade': 35, 'cidade': 'Brasília'}
-]
+# # Exemplo de uso:
+# dados = [
+#     {'nome': 'João', 'idade': 30, 'cidade': 'São Paulo'},
+#     {'nome': 'Maria', 'idade': 25, 'cidade': 'Rio de Janeiro'},
+#     {'nome': 'Pedro', 'idade': 35, 'cidade': 'Brasília'}
+# ]
