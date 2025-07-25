@@ -63,3 +63,9 @@ docs/_build/
 # PyBuilder
 target/
 .aider*
+pywhatkit/PyWhatKit_DB.txt
+msg_whatsapp/.~lock.numeros.xlsx#
+msg_whatsapp/apagar.py
+msg_whatsapp/erros.csv
+msg_whatsapp/seta.png
+PyWhatKit_DB.txt
