@@ -24,7 +24,21 @@ for linha in pagina_atts.iter_rows(min_row=2):
     telefone = linha[1].value
     print(nome)
     print(telefone)
-    mensagem = f'Olá {nome}, tudo bem? Essa é uma mensagem automatizada 25.'
+    mensagem = (
+        "*CONFIRMAÇÃO DE MATRÍCULA*\n\n"
+        f"Olá {nome},\n\n"
+        "Seu nome foi indicado pela Secretaria Municipal de Educação para participar do Curso de Aperfeiçoamento em Mentoria de Diretores Escolares.\n\n"
+        "⚠️ *Ainda NÃO recebemos a confirmação da sua matrícula!* ⚠️\n"
+        "A confirmação deve ser feita exclusivamente pelo link abaixo até *25/07/2025*. Após essa data, sua vaga será destinada a outro município.\n\n"
+        "👉 Link para confirmação de matrícula:\n"
+        "https://forms.gle/WAKzih3nE5Tyho22A\n\n"
+        "Em caso de dúvidas, entre em contato pelo e-mail:\n"
+        "proditec-alunos@virtual.ufc.br\n\n"
+        "Mais informações podem ser lidas no e-mail encaminhado.\n\n"
+        "Henrique Barbosa Silva\n"
+        "Coordenação Administrativa do Curso em Mentoria de Diretores Escolares\n"
+        "Universidade Federal do Ceará"
+    )
     # print(f"Enviando mensagem para {nome}: {mensagem}")
     link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
     webbrowser.open(link_mensagem_whatsapp)
@@ -32,7 +46,7 @@ for linha in pagina_atts.iter_rows(min_row=2):
     try:
         seta = pyautogui.locateCenterOnScreen('seta.png', confidence=0.8)  # Tenta localizar a imagem da seta na tela com maior tolerância
         if seta is None:
-            raise Exception("Seta não encontrada na tela. Verifique se 'seta.png' está no diretório correto e visível na tela.")
+            raise Exception("Seta não   encontrada na tela. Verifique se 'seta.png' está no diretório correto e visível na tela.")
         sleep(5)  # Espera 5 segundos para garantir que a seta foi localizada
         pyautogui.click(seta[0], seta[1])  # Clica na seta para enviar a mensagem
         sleep(5)  # Espera para garantir que a mensagem foi enviada
