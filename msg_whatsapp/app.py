@@ -1,6 +1,8 @@
 """
-AUTOMATIZAR O ENVIO DE MENSGAS PARA OS ATTs POR MEIO DO WHATSAPP
-Dependências: openpyxl, pillow, pyautogui, opencv-python, webbrowser, urllib.parse, time
+SCRIPT PARA AUTOMATIZAR O ENVIO DE MENSGAS PARA OS CURSISTAS E ATTs POR MEIO DO WHATSAPP
+Dependências:
+
+pip install openpyxl pillow pyautogui opencv-python webbrowser urllib.parse time
 
 """
 import webbrowser
@@ -9,7 +11,7 @@ from urllib.parse import quote
 from time import sleep
 import pyautogui
 
-workbook = openpyxl.load_workbook('atts.xlsx')
+workbook = openpyxl.load_workbook('contatos.xlsx')
 pagina_atts = workbook['Sheet1']
 # # Abrir o WhatsApp Web no navegador
 # print("Abrindo o WhatsApp Web...")
