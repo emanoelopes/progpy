@@ -6,11 +6,9 @@ import pandas as pd
 cursistas_file = '/content/Cursistas_Turma_A.xlsx'
 ava_report_file = '/content/TurmaA-filename.csv'
 
-# Define matching and display columns
+# Define matching columns
 matching_column_cursistas = '[0] login'
 matching_column_ava = 'Login do Membro'
-display_columns = ['Nome do Membro', 'Email do Membro', 'Login do Membro', '[3]CPF']
-
 
 # Load the dataframes
 try:
@@ -20,7 +18,6 @@ except FileNotFoundError as e:
     print(f"Error loading file: {e}. Make sure the file paths are correct.")
     exit()
 
-
 # Clean the matching columns
 df_cursistas[matching_column_cursistas] = df_cursistas[matching_column_cursistas].astype(str).str.strip().str.lower()
 df_ava[matching_column_ava] = df_ava[matching_column_ava].astype(str).str.strip().str.lower()
@@ -28,22 +25,22 @@ df_ava[matching_column_ava] = df_ava[matching_column_ava].astype(str).str.strip(
 # Filter rows where 'Erro Apresentado?' is 'Sim'
 errored_cursistas_df = df_ava[df_ava['Erro Apresentado?'] == 'Sim'].copy() # Use .copy() to avoid SettingWithCopyWarning
 
-# Merge with df_cursistas to get CPF information using the cleaned login columns
-errored_cursistas_with_cpf = pd.merge(
+# Merge with the entire df_cursistas dataframe using the cleaned login columns
+errored_cursistas_with_cursistas_info = pd.merge(
     errored_cursistas_df,
-    df_cursistas[[matching_column_cursistas, '[3]CPF']], # Select cleaned login and CPF from df_cursistas
+    df_cursistas,
     how='left',
     left_on=matching_column_ava, # Use cleaned login from df_ava
     right_on=matching_column_cursistas # Use cleaned login from df_cursistas
 )
 
-# Select the desired columns including CPF
-errored_cursistas_info_df = errored_cursistas_with_cpf[display_columns]
+# Select only the columns that are present in df_cursistas and maintain their original order
+final_errored_cursistas_df = errored_cursistas_with_cursistas_info[df_cursistas.columns]
 
 # Display the resulting DataFrame
-print("Cursistas com 'Sim' na coluna 'Erro Apresentado?' (incluindo CPF):")
-print(errored_cursistas_info_df.to_string())
+print("Cursistas com 'Sim' na coluna 'Erro Apresentado?' (com colunas na ordem do df_cursistas):")
+print(final_errored_cursistas_df.to_string())
 
-# Optionally, save the result to a new Excel file
-# errored_cursistas_info_df.to_excel('cursistas_com_erro.xlsx', index=False)
-# print("\nArquivo 'cursistas_com_erro.xlsx' gerado com sucesso!")
+# Save the result to a new Excel file
+ final_errored_cursistas_df.to_excel('cursistas_com_erro_completo.xlsx', index=False)
+print("\nArquivo 'cursistas_com_erro_completo.xlsx' gerado com sucesso e pronto para importação no AVAMEC!")
