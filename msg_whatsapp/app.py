@@ -12,7 +12,7 @@ from time import sleep
 import pyautogui
 
 workbook = openpyxl.load_workbook('contatos.xlsx')
-pagina_atts = workbook['Sheet1']
+pagina_atts = workbook['Sheet2']
 # # Abrir o WhatsApp Web no navegador
 # print("Abrindo o WhatsApp Web...")
 # webbrowser.open('https://web.whatsapp.com/')
@@ -22,16 +22,21 @@ pagina_atts = workbook['Sheet1']
 # # Percorrer as linhas da planilha e enviar mensagens
 print("Iniciando o envio de mensagens...")
 for linha in pagina_atts.iter_rows(min_row=2):
+    # Verifica se a linha está nula (todos os valores são None)
+    if all(cell.value is None for cell in linha):
+        print("Linha nula encontrada. Encerrando o programa.")
+        break
+
     nome = linha[0].value
     telefone = linha[1].value
     print(nome)
     print(telefone)
     mensagem = (
-        "*CONFIRMAÇÃO DE MATRÍCULA*\n\n"
+        "*Prorrogação do Prazo para Confirmação da Inscrição para 31/07/2025*\n\n"
         f"Olá {nome},\n\n"
         "Seu nome foi indicado pela Secretaria Municipal de Educação para participar do Curso de Aperfeiçoamento em Mentoria de Diretores Escolares.\n\n"
         "⚠️ *Ainda NÃO recebemos a confirmação da sua matrícula!* ⚠️\n"
-        "A confirmação deve ser feita exclusivamente pelo link abaixo até *25/07/2025*. Após essa data, sua vaga será destinada a outro município.\n\n"
+        "A confirmação deve ser feita exclusivamente pelo link abaixo até *31/07/2025*. Após essa data, sua vaga será destinada a outro município.\n\n"
         "👉 Link para confirmação de matrícula:\n"
         "https://forms.gle/WAKzih3nE5Tyho22A\n\n"
         "Em caso de dúvidas, entre em contato pelo e-mail:\n"
@@ -41,7 +46,6 @@ for linha in pagina_atts.iter_rows(min_row=2):
         "Coordenação Administrativa do Curso em Mentoria de Diretores Escolares\n"
         "Universidade Federal do Ceará"
     )
-    # print(f"Enviando mensagem para {nome}: {mensagem}")
     link_mensagem_whatsapp = f'https://web.whatsapp.com/send?phone={telefone}&text={quote(mensagem)}'
     webbrowser.open(link_mensagem_whatsapp)
     sleep(20)  # Espera 5 segundos para garantir que a página carregou
@@ -49,11 +53,11 @@ for linha in pagina_atts.iter_rows(min_row=2):
         seta = pyautogui.locateCenterOnScreen('seta.png', confidence=0.8)  # Tenta localizar a imagem da seta na tela com maior tolerância
         if seta is None:
             raise Exception("Seta não   encontrada na tela. Verifique se 'seta.png' está no diretório correto e visível na tela.")
-        sleep(5)  # Espera 5 segundos para garantir que a seta foi localizada
+        sleep(8)  # Espera 5 segundos para garantir que a seta foi localizada
         pyautogui.click(seta[0], seta[1])  # Clica na seta para enviar a mensagem
-        sleep(5)  # Espera para garantir que a mensagem foi enviada
+        sleep(8)  # Espera para garantir que a mensagem foi enviada
         pyautogui.hotkey('ctrl', 'w')  # Fecha a aba do navegador
-        sleep(5)  # Espera 5 segundos antes de continuar para a próxima mensagem
+        sleep(8)  # Espera 5 segundos antes de continuar para a próxima mensagem
         print(f'Mensagem enviada para {nome}!')
     except:
         print(f"Erro ao enviar mensagem para {nome}.")
