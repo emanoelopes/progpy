@@ -3,8 +3,8 @@
 import pandas as pd
 
 # Define file paths (update these paths if your files are located elsewhere)
-cursistas_file = '/content/Cursistas_Turma_A.xlsx'
-ava_report_file = '/content/TurmaA-filename.csv'
+cursistas_file = '/content/Cursistas Turma_A.xlsx'
+ava_report_file = '/content/grp4_sec3_turmaA.csv'
 
 # Define matching columns
 matching_column_cursistas = '[0] login'
@@ -34,6 +34,10 @@ errored_cursistas_with_cursistas_info = pd.merge(
     right_on=matching_column_cursistas # Use cleaned login from df_cursistas
 )
 
+# Replace the values in the '[0] login' column with values from 'Login existente' where available
+errored_cursistas_with_cursistas_info[matching_column_cursistas] = errored_cursistas_with_cursistas_info['Login existente'].fillna(errored_cursistas_with_cursistas_info[matching_column_cursistas])
+
+
 # Select only the columns that are present in df_cursistas and maintain their original order
 final_errored_cursistas_df = errored_cursistas_with_cursistas_info[df_cursistas.columns]
 
@@ -42,5 +46,5 @@ print("Cursistas com 'Sim' na coluna 'Erro Apresentado?' (com colunas na ordem d
 print(final_errored_cursistas_df.to_string())
 
 # Save the result to a new Excel file
- final_errored_cursistas_df.to_excel('cursistas_com_erro_completo.xlsx', index=False)
+final_errored_cursistas_df.to_excel('cursistas_com_erro_completo.xlsx', index=False)
 print("\nArquivo 'cursistas_com_erro_completo.xlsx' gerado com sucesso e pronto para importação no AVAMEC!")
