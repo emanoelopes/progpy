@@ -1,5 +1,5 @@
 # Define file paths (update these paths if your files are located elsewhere)
-cursistas_file = '/content/Cursistas Turma_A.xlsx'
+cursistas_file = '/home/emanoel/Downloads/avamec_inscricoes/Cursistas Turma A/Cursistas Turma_A.xlsx'
 
 # Define matching columns
 matching_column_cursistas = '[0] login'
@@ -22,7 +22,52 @@ except FileNotFoundError as e:
     # Therefore, we signal a failure for the entire subtask.
     raise SystemExit(f"Error loading cursistas file: {e}. Cannot proceed.")
 
+def verificar_emails(cursistas_file, emails_file):
+    """
+    Verifica se os emails fornecidos existem na planilha de cursistas.
+    
+    Args:
+        cursistas_file (str): Caminho para o arquivo de cursistas
+        emails_file (str): Caminho para o arquivo com lista de emails
+    """
+    try:
+        # Carrega planilha de cursistas
+        df_cursistas = pd.read_excel(cursistas_file)
+        
+        # Carrega arquivo com emails para verificar
+        with open(emails_file, 'r') as f:
+            emails_verificar = [email.strip().lower() for email in f.readlines()]
+        
+        # Converte emails dos cursistas para lowercase para comparação
+        emails_cursistas = df_cursistas['[2] E-mail'].str.strip().str.lower()
+        
+        # Verifica emails
+        emails_encontrados = []
+        emails_nao_encontrados = []
+        
+        for email in emails_verificar:
+            if email in emails_cursistas.values:
+                emails_encontrados.append(email)
+            else:
+                emails_nao_encontrados.append(email)
+        
+        # Exibe resultados
+        print("\nResultados da verificação de emails:")
+        print(f"Total de emails verificados: {len(emails_verificar)}")
+        print(f"Emails encontrados: {len(emails_encontrados)}")
+        print(f"Emails não encontrados: {len(emails_nao_encontrados)}")
+        
+        if emails_nao_encontrados:
+            print("\nEmails não encontrados na planilha:")
+            for email in emails_nao_encontrados:
+                print(f"- {email}")
+                
+    except FileNotFoundError as e:
+        print(f"Erro ao carregar arquivos: {e}")
+    except Exception as e:
+        print(f"Erro inesperado: {e}")
 
+# ...existing code...
 # Loop through the identified AVA report files
 for ava_report_file in ava_report_files:
     print(f"\nProcessing file: {ava_report_file}")
@@ -94,3 +139,6 @@ for ava_report_file in ava_report_files:
 
 
 print("\nProcessing complete.")
+
+# Exemplo de chamada da função
+verificar_emails('/home/emanoel/Downloads/avamec_inscricoes/Cursistas Turma A/Cursistas Turma_A.xlsx', '/home/emanoel/Downloads/avamec_inscricoes/Cursistas Turma A/emails_verificar.txt')
