@@ -7,7 +7,7 @@ import os
 
 # Load the main Excel file with error handling
 try:
-    df = pd.read_excel("/content/drive/MyDrive/Classroom/PRODITEC/cursistas/Lista de Cursistas para Cadastrar no AVamec - Versão 30072025.xlsx")
+    df = pd.read_excel("/home/emanoel/Dropbox/avamec/inscricoes/Cadastro avamec Quarta Lista 080825.xlsx")
 except FileNotFoundError:
     print("Arquivo principal não encontrado. Verifique o caminho e tente novamente.")
     exit(1)
@@ -27,7 +27,7 @@ df = df.rename(columns=rename_mapping)
 grouped_by_grupo = df.groupby('grupo')
 
 # Load the template Excel file with error handling
-template_path = "/content/pequenos_grupos_excel/planilha-modelo-de-importacao-de-membros.xlsx"
+template_path = "/home/emanoel/Dropbox/avamec/inscricoes/planilha-modelo-de-importacao-de-membros.xlsx"
 try:
     template_df = pd.read_excel(template_path)
 except FileNotFoundError:
@@ -48,7 +48,7 @@ column_mapping = {
 role_value = 'Aluno'
 
 # Create a directory for the filled templates
-filled_output_dir = "/content/pequenos_grupos_templates_preenchidos"
+filled_output_dir = "/home/emanoel/Dropbox/avamec/pequenos_grupos_templates_preenchidos"
 os.makedirs(filled_output_dir, exist_ok=True)
 
 # Format the 'data_nascimento' column
