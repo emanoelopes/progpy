@@ -1,3 +1,4 @@
+import streamlit as st
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -6,7 +7,6 @@ from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain.chains import ConversationalRetrievalChain
 from langchain.schema import SystemMessage
-# from google.colab import userdata # Remove this import
 
 # Load API key from environment variable
 GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
@@ -16,7 +16,7 @@ if not GOOGLE_API_KEY:
 
 
 # Load PDF and create vectorstore
-loader = PyPDFLoader("/home/demo/Downloads/guia_do_att.pdf") # This path might need adjustment for local execution
+loader = PyPDFLoader("guia_do_att.pdf") # This path might need adjustment for local execution
 documents = loader.load()
 embeddings = GoogleGenerativeAIEmbeddings(model='models/embedding-001', google_api_key=GOOGLE_API_KEY)
 vectorstore = FAISS.from_documents(documents, embeddings)
@@ -25,7 +25,7 @@ retriever = vectorstore.as_retriever()
 # Initialize chat model and system message
 chat = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", google_api_key=GOOGLE_API_KEY)
 system_message = SystemMessage(content='''
-Você é um assistente especializado no atendimento ao usuário do PRODITEC. Responda claramente a perguntas sobre procedimentos do AVAMEC. Se a pergunta nao estiver contida no ducmento, responda: Favor entrar em contato com o suporte.
+Faça perguntas sobre o Guia do ATT. Caso a resposta não seja satisfatória, entrar em contato com o suporte.
 ''')
 
 # Setup session history
