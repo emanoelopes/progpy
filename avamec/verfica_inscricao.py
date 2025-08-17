@@ -1,5 +1,5 @@
 # Define file paths (update these paths if your files are located elsewhere)
-cursistas_file = '/home/emanoel/Downloads/avamec_inscricoes/Cursistas Turma A/Cursistas Turma_A.xlsx'
+cursistas_file = '/home/emanoel/Dropbox/avamec/inscricoes/Cursistas Turma A/Cursistas Turma_A.xlsx'
 
 # Define matching columns
 matching_column_cursistas = '[0] login'
