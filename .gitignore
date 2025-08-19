@@ -71,4 +71,6 @@ msg_whatsapp/seta.png
 PyWhatKit_DB.txt
 
 # Selenin stuff
-cookies/avamec_session.pkl
+avamec/cookies/avamec_session.pkl
+.env
+
