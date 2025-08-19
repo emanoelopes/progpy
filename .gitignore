@@ -69,3 +69,6 @@ msg_whatsapp/apagar.py
 msg_whatsapp/erros.csv
 msg_whatsapp/seta.png
 PyWhatKit_DB.txt
+
+# Selenin stuff
+cookies/avamec_session.pkl
