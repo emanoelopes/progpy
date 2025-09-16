@@ -1,145 +1,148 @@
 ﻿Tipo;Disciplina;Modelo;MAE;MSE;R2;Aluno;Pré-requisito;Importância
-Métrica;Equações;Linear Regression;1.7119383194553013;4.633885282846417;-0.08278467212973584;;;
-Métrica;Equações;Support Vector Regression;1.6512576062741502;4.6980312194715355;-0.09777344131964116;;;
-Métrica;Equações;Random Forest;2.1652600000000004;6.941659476000001;-0.6220346471632867;;;
-Métrica;Estatística;Linear Regression;2.180821667479788;6.129436914042522;-0.5470562630092184;;;
-Métrica;Estatística;Support Vector Regression;2.4801904317777734;7.88508384447111;-0.9901776487811995;;;
-Métrica;Estatística;Random Forest;2.5851000000000006;8.878918700000003;-1.241019358909643;;;
-Métrica;Frações;Support Vector Regression;1.4887497089308126;3.67248230481871;0.13386894063377985;;;
-Métrica;Frações;Linear Regression;1.6034922888300962;3.7776039297978854;0.1090766892766949;;;
-Métrica;Frações;Random Forest;1.502408333333333;4.715126909027776;-0.11203200609131314;;;
-Métrica;Funções;Linear Regression;0.9598797564792918;1.5289467675055157;0.008207857092945026;;;
-Métrica;Funções;Support Vector Regression;1.1264034332275425;1.9822470982527598;-0.28583750535337327;;;
-Métrica;Funções;Random Forest;1.3556714285714269;3.1485524277823034;-1.0423925971602905;;;
-Métrica;Geometria Básica;Linear Regression;2.067660245881905;5.36447197867024;0.028104939004594542;;;
-Métrica;Geometria Básica;Support Vector Regression;2.0794645578381554;5.501786670620229;0.003227286285196529;;;
-Métrica;Geometria Básica;Random Forest;2.3374433333333355;6.264314983222226;-0.13492191159182298;;;
-Métrica;Probabilidade;Support Vector Regression;1.508704159636165;2.6893855725223217;-0.05234996577019957;;;
-Métrica;Probabilidade;Linear Regression;1.4763888337873512;2.743836321462852;-0.07365641002615897;;;
-Métrica;Probabilidade;Random Forest;1.760099999999999;4.379369900000001;-0.7136366802316487;;;
-Métrica;Trigonometria;Linear Regression;1.7636388222636543;4.328628243137474;-0.08486923386904133;;;
-Métrica;Trigonometria;Support Vector Regression;1.8428492928460667;4.821434407174429;-0.20837955067028324;;;
-Métrica;Trigonometria;Random Forest;1.853799999999999;5.890666399999995;-0.4763574937343349;;;
-Recomendação;;;;;;Aluno_1;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_1;Equações;1.0
-Recomendação;;;;;;Aluno_1;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_2;Números Inteiros;1.0
+Métrica;Equações;Random Forest;1.4016000000000006;2.7608668000000005;0.3262234478719249;;;
+Métrica;Equações;Support Vector Regression;1.5687485257824394;4.17392819078732;-0.01862753582275478;;;
+Métrica;Equações;Linear Regression;1.790673956753849;4.478448164616023;-0.09294420261031422;;;
+Métrica;Estatística;Linear Regression;1.548312999570112;4.1911876525585825;-0.13333540265503396;;;
+Métrica;Estatística;Support Vector Regression;1.6043538048730894;4.545186123504502;-0.22905982085516907;;;
+Métrica;Estatística;Random Forest;1.8807999999999967;5.570394199999989;-0.506285443876582;;;
+Métrica;Frações;Support Vector Regression;1.0936000000000023;1.4347007999999941;0.0876306518283021;;;
+Métrica;Frações;Linear Regression;1.3218580996992062;2.3358995641376885;-0.48546872123223506;;;
+Métrica;Frações;Random Forest;1.4176149999999972;2.691028693138878;-0.711306005175758;;;
+Métrica;Funções;Linear Regression;1.7019141881526203;3.9779591449017984;-0.26360634824236784;;;
+Métrica;Funções;Support Vector Regression;1.8778578489431819;5.236734424281472;-0.6634587288464382;;;
+Métrica;Funções;Random Forest;2.333056428571429;7.512969969757663;-1.3865093134772284;;;
+Métrica;Geometria Básica;Random Forest;1.1460999999999983;1.8464134999999975;0.2383096819438152;;;
+Métrica;Geometria Básica;Linear Regression;1.3101229110262071;2.0355852249929676;0.1602717606563393;;;
+Métrica;Geometria Básica;Support Vector Regression;1.3543284972499063;2.1496474918807826;0.11321831117495851;;;
+Métrica;Probabilidade;Support Vector Regression;1.0971366907081643;1.6133714427885189;0.22168390043488917;;;
+Métrica;Probabilidade;Linear Regression;1.1574196763647286;1.6604955059412851;0.1989505012584859;;;
+Métrica;Probabilidade;Random Forest;1.3953000000000004;3.0190588999999983;-0.45644213420811286;;;
+Métrica;Trigonometria;Linear Regression;1.8987907106157063;5.41659482092572;-0.17404951034457228;;;
+Métrica;Trigonometria;Random Forest;2.0280149999999995;5.735163991749996;-0.24309953003077744;;;
+Métrica;Trigonometria;Support Vector Regression;1.9960786720991588;6.316140639725988;-0.36902649551889755;;;
 Recomendação;;;;;;Aluno_4;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_4;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_4;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_12;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_15;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_15;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_15;Frações;0.4351286888248783
-Recomendação;;;;;;Aluno_23;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_28;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_28;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_28;Frações;0.40155334541423343
-Recomendação;;;;;;Aluno_31;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_31;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_31;Equações;0.42769033614942326
-Recomendação;;;;;;Aluno_32;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_34;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_34;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_34;Equações;0.42769033614942326
-Recomendação;;;;;;Aluno_36;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_36;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_36;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_40;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_40;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_40;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_48;Números Inteiros;1.0
-Recomendação;;;;;;Aluno_48;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_48;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_3;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_3;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_3;Frações;0.4351286888248783
-Recomendação;;;;;;Aluno_16;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_16;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_16;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_18;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_18;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_18;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_25;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_25;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_25;Frações;0.4351286888248783
-Recomendação;;;;;;Aluno_42;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_42;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_42;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_44;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_44;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_44;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_49;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_49;Números Inteiros;0.5648713111751218
-Recomendação;;;;;;Aluno_49;Frações;0.4351286888248783
-Recomendação;;;;;;Aluno_6;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_6;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_6;Frações;0.4920019494635485
-Recomendação;;;;;;Aluno_7;Equações;1.0
-Recomendação;;;;;;Aluno_7;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_7;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_13;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_13;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_13;Frações;0.4920019494635485
-Recomendação;;;;;;Aluno_26;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_26;Frações;0.4920019494635485
-Recomendação;;;;;;Aluno_33;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_33;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_33;Frações;0.4920019494635485
-Recomendação;;;;;;Aluno_35;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_35;Números Inteiros;0.5079980505364515
-Recomendação;;;;;;Aluno_35;Frações;0.4920019494635485
-Recomendação;;;;;;Aluno_43;Equações;1.0
-Recomendação;;;;;;Aluno_43;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_43;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_10;Equações;1.0
-Recomendação;;;;;;Aluno_10;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_10;Equações;0.43192702231836155
+Recomendação;;;;;;Aluno_4;Equações;1.0
+Recomendação;;;;;;Aluno_4;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_9;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_9;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_9;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_13;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_13;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_13;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_16;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_16;Equações;1.0
+Recomendação;;;;;;Aluno_16;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_22;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_22;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_22;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_29;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_29;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_29;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_30;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_30;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_30;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_37;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_37;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_37;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_39;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_39;Equações;1.0
+Recomendação;;;;;;Aluno_39;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_43;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_43;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_43;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_50;Números Inteiros;1.0
+Recomendação;;;;;;Aluno_3;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_3;Números Inteiros;0.34152697852208647
+Recomendação;;;;;;Aluno_12;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_12;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_12;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_17;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_17;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_17;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_20;Equações;1.0
+Recomendação;;;;;;Aluno_20;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_20;Geometria Básica;0.5521464551370366
 Recomendação;;;;;;Aluno_21;Equações;1.0
-Recomendação;;;;;;Aluno_21;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_21;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_27;Equações;1.0
-Recomendação;;;;;;Aluno_27;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_27;Equações;0.42769033614942326
+Recomendação;;;;;;Aluno_21;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_21;Números Inteiros;0.34152697852208647
+Recomendação;;;;;;Aluno_28;Equações;1.0
+Recomendação;;;;;;Aluno_28;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_28;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_42;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_42;Números Inteiros;0.34152697852208647
+Recomendação;;;;;;Aluno_44;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_44;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_44;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_47;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_47;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_47;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_49;Equações;1.0
+Recomendação;;;;;;Aluno_49;Frações;0.6584730214779135
+Recomendação;;;;;;Aluno_49;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_1;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_1;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_7;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_7;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_7;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_14;Equações;1.0
+Recomendação;;;;;;Aluno_14;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_14;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_15;Equações;1.0
+Recomendação;;;;;;Aluno_15;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_15;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_23;Equações;1.0
+Recomendação;;;;;;Aluno_23;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_23;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_26;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_26;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_26;Frações;0.4832224400599446
+Recomendação;;;;;;Aluno_32;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_32;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_32;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_35;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_35;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_35;Números Inteiros;0.5167775599400555
+Recomendação;;;;;;Aluno_38;Equações;1.0
+Recomendação;;;;;;Aluno_38;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_38;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_5;Equações;1.0
+Recomendação;;;;;;Aluno_5;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_5;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_6;Equações;1.0
+Recomendação;;;;;;Aluno_6;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_6;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_8;Equações;1.0
+Recomendação;;;;;;Aluno_8;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_8;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_25;Equações;1.0
+Recomendação;;;;;;Aluno_25;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_25;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_33;Equações;1.0
+Recomendação;;;;;;Aluno_33;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_33;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_34;Equações;1.0
+Recomendação;;;;;;Aluno_34;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_34;Equações;0.3829741251013875
 Recomendação;;;;;;Aluno_41;Equações;1.0
-Recomendação;;;;;;Aluno_41;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_41;Equações;0.42769033614942326
-Recomendação;;;;;;Aluno_47;Equações;1.0
-Recomendação;;;;;;Aluno_47;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_47;Frações;0.40155334541423343
-Recomendação;;;;;;Aluno_14;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_14;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_14;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_17;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_17;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_17;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_19;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_19;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_19;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_22;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_22;Equações;0.42769033614942326
-Recomendação;;;;;;Aluno_37;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_37;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_37;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_38;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_38;Geometria Básica;0.5723096638505768
-Recomendação;;;;;;Aluno_38;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_8;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_8;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_8;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_20;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_20;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_24;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_24;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_30;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_30;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_46;Frações;0.5680729776816384
-Recomendação;;;;;;Aluno_46;Equações;0.43192702231836155
-Recomendação;;;;;;Aluno_9;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_9;Frações;0.40155334541423343
-Recomendação;;;;;;Aluno_11;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_11;Frações;0.40155334541423343
-Recomendação;;;;;;Aluno_39;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_39;Frações;0.40155334541423343
-Recomendação;;;;;;Aluno_45;Probabilidade;0.5984466545857666
-Recomendação;;;;;;Aluno_45;Frações;0.40155334541423343
+Recomendação;;;;;;Aluno_41;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_41;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_36;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_36;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_45;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_45;Geometria Básica;0.5521464551370366
+Recomendação;;;;;;Aluno_45;Equações;0.4478535448629634
+Recomendação;;;;;;Aluno_2;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_2;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_10;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_10;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_11;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_11;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_27;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_27;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_46;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_46;Equações;0.3829741251013875
+Recomendação;;;;;;Aluno_48;Frações;0.6170258748986125
+Recomendação;;;;;;Aluno_48;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_48;Probabilidade;0.4535150666682352
+Recomendação;;;;;;Aluno_24;Frações;0.5464849333317648
+Recomendação;;;;;;Aluno_24;Probabilidade;0.4535150666682352
