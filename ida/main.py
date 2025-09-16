@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from data import create_data
 from prerequisite_issues import identify_prerequisite_issues
 from output import gerar_csv
+from eda import gerar_eda
 from output import gerar_csv
 
 
@@ -69,6 +70,7 @@ def main():
     parser.add_argument("--top", type=int, default=3)
     parser.add_argument("--no-plots", action="store_true")
     parser.add_argument("--save", action="store_true")
+    parser.add_argument("--profile", action="store_true", help="Gera relatório EDA em HTML")
     args = parser.parse_args()
 
     # Criando o DataFrame
@@ -118,6 +120,13 @@ def main():
     unified_df = unified_df[[c for c in unified_cols if c in unified_df.columns]]
     gerar_csv(unified_df, "output.csv", colunas=unified_cols)
     print("Arquivo CSV 'output.csv' criado com sucesso.")
+
+    # Gerar EDA com ydata-profiling
+    if args.profile:
+        results_dir = Path(__file__).parent / "results"
+        saida_html = results_dir / "profile.html"
+        caminho = gerar_eda(df, str(saida_html))
+        print(f"Relatório EDA gerado em: {caminho}")
 
 
 if __name__ == "__main__":
