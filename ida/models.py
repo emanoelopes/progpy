@@ -1,4 +1,3 @@
-from unittest import result
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
@@ -29,9 +28,8 @@ def evaluate_models(X_train, X_test, y_train, y_test):
 
         results[name] = {
             'MAE': mae,
+            'MSE': mse,
             'R²': r2
         }
 
     return results
-
-print("Métricas dos Modelos:", result)
