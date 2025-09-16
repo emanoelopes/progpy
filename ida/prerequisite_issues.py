@@ -1,6 +1,4 @@
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import train_test_split
 from models import evaluate_models
 
@@ -19,11 +17,6 @@ def identify_prerequisite_issues(df, pre_reqs, threshold=5.0):
         # Avaliar modelos e coletar métricas
         metrics = evaluate_models(X_train, X_test, y_train, y_test)
         metrics_summary[subject] = metrics
-
-        # Codificar variáveis categóricas
-        categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
-        preprocessor = ColumnTransformer(transformers=[('cat', OneHotEncoder(drop='first'), categorical_cols)], remainder='passthrough')
-        X_transformed = preprocessor.fit_transform(X)
 
         # Treinar o modelo Random Forest
         model = RandomForestRegressor(random_state=42)
