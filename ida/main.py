@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from data import create_data
 from prerequisite_issues import identify_prerequisite_issues
 from output import gerar_csv
+from output import gerar_csv
 
 
 def build_metrics_dataframe(metrics_summary):
@@ -93,11 +94,29 @@ def main():
     # Exportar artefatos
     save_artifacts(metrics_df, recs_df, save=args.save)
 
-    # # Criando um arquivo csv com os resultados
-    # gerar_csv(df, 'output.csv')
-    
-    # Exporta o DataFrame para um arquivo CSV 
-    df.to_csv('output1.csv', index=False, encoding='utf-8')
+    # Criar um CSV unificado e amigável (output.csv)
+    # Colunas padronizadas para unir métricas e recomendações em formato "long"
+    unified_cols = [
+        "Tipo", "Disciplina", "Modelo", "MAE", "MSE", "R2",
+        "Aluno", "Pré-requisito", "Importância"
+    ]
+
+    metrics_long = metrics_df.copy()
+    metrics_long.insert(0, "Tipo", "Métrica")
+    for col in ["Aluno", "Pré-requisito", "Importância"]:
+        if col not in metrics_long.columns:
+            metrics_long[col] = ""
+
+    recs_long = recs_df.copy()
+    recs_long.insert(0, "Tipo", "Recomendação")
+    for col in ["Disciplina", "Modelo", "MAE", "MSE", "R2"]:
+        if col not in recs_long.columns:
+            recs_long[col] = ""
+
+    unified_df = pd.concat([metrics_long, recs_long], ignore_index=True, sort=False)
+    # Reordenar colunas e gerar CSV com separador ; e decimal ,
+    unified_df = unified_df[[c for c in unified_cols if c in unified_df.columns]]
+    gerar_csv(unified_df, "output.csv", colunas=unified_cols)
     print("Arquivo CSV 'output.csv' criado com sucesso.")
 
 
