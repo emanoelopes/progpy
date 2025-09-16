@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from data import create_data
 from prerequisite_issues import identify_prerequisite_issues
+from output import gerar_csv
 
 
 def build_metrics_dataframe(metrics_summary):
@@ -91,6 +92,13 @@ def main():
 
     # Exportar artefatos
     save_artifacts(metrics_df, recs_df, save=args.save)
+
+    # # Criando um arquivo csv com os resultados
+    # gerar_csv(df, 'output.csv')
+    
+    # Exporta o DataFrame para um arquivo CSV 
+    df.to_csv('output1.csv', index=False, encoding='utf-8')
+    print("Arquivo CSV 'output.csv' criado com sucesso.")
 
 
 if __name__ == "__main__":

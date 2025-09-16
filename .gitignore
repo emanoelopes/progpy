@@ -25,6 +25,10 @@ var/
 bin/
 lib64
 pyvenv.cfg
+.venv/
+.vim/
+.idea/
+include/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -58,3 +62,15 @@ docs/_build/
 
 # PyBuilder
 target/
+.aider*
+pywhatkit/PyWhatKit_DB.txt
+msg_whatsapp/.~lock.numeros.xlsx#
+msg_whatsapp/apagar.py
+msg_whatsapp/erros.csv
+msg_whatsapp/seta.png
+PyWhatKit_DB.txt
+
+# Selenium stuff
+avamec/cookies/avamec_session.pkl
+.env
+
