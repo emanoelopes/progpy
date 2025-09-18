@@ -32,6 +32,7 @@ def setup_driver():
     """Configure and return Firefox WebDriver"""
     options = webdriver.FirefoxOptions()
     # options.add_argument('--headless')  # Uncomment to run in headless mode
+    options.profile = '/home/emanoel/.mozilla/firefox/xfddl5q0.avamec'  # Update with your profile path
     return webdriver.Firefox(options=options)
 
 def wait_for_element(driver, by, value, timeout=10):
@@ -54,6 +55,9 @@ def load_cookies(driver, path):
         with open(path, 'rb') as file:
             cookies = pickle.load(file)
             for cookie in cookies:
+                # Skip cookies with SameSite=None and missing 'secure'
+                if cookie.get('sameSite') == 'None' and not cookie.get('secure', False):
+                    continue
                 driver.add_cookie(cookie)
         logging.info("Cookies loaded successfully")
         return True
@@ -128,9 +132,17 @@ def automate_web_task():
         driver.execute_script("window.open('');")  # Open a new tab
         driver.switch_to.window(driver.window_handles[1])  # Switch to the new tab
         logging.info("New tab opened for Sala de Aprendizagem do Grupo 1")
-        sala_aprendizagem_a1 = "https://avamecinterativo.mec.gov.br/app/dashboard/environments/179/courses/7114"
-        logging.info(f"Navegando para a sala de aprendizagem do grupo 1: {sala_aprendizagem_a1}")
-        driver.get(sala_aprendizagem_a1)
+        sala_aprendizagem_1_a = "https://avamecinterativo.mec.gov.br/app/dashboard/environments/179/courses/7114"
+        logging.info(f"Navegando para a sala de aprendizagem do grupo 1: {sala_aprendizagem_1_a}")
+        driver.get(sala_aprendizagem_1_a)
+
+        # Acessar a sala 3
+        sala_3_1_a = "https://avamecinterativo.mec.gov.br/app/dashboard/spaces/79549"
+        logging.info(f"Navegando para a sala 3: {sala_3_1_a}")
+        driver.get(sala_3_1_a)
+        time.sleep(5)  # Wait for page to load
+        logging.info("Navegou para a sala 3 com sucesso")
+        
 
         # Keep browser open for manual interaction
         print("\nNavegação concluída. Pressione Enter para fechar o navegador...")
