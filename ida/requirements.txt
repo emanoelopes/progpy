@@ -1,4 +1,4 @@
-numpy
-pandas
-scikit-learn
-matplotlib
+numpy==1.22.3  # Updated numpy version
+pandas==1.4.2   # Updated pandas version
+scikit-learn==1.1.1 # Updated scikit-learn version
+matplotlib==3.5.1   # Updated matplotlib version
