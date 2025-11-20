@@ -3,6 +3,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# Configuração da página
+st.set_page_config(
+    page_title="Sistema de Automação PRODITEC AVAMEC",
+    # page_icon="📊",
+    layout="wide"
+)
+
 # Dados fictícios de rotatividade de clientes
 data = {
     'Mês': ['Outubro'],
@@ -23,3 +30,4 @@ plt.ylabel('Cursistas Evadidos')
 
 # Exibindo o gráfico no Streamlit
 st.pyplot(plt)
+

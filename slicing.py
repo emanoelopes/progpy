@@ -1,0 +1,6 @@
+pessoas = (NATAN DOS SANTOS ROCHA,
+           MARCOS ANTONIO ALBUQUERQUE DE MORAIS,
+           MARY FATIMA DA SILVA FREITAS
+)
+
+pessoas[:]
