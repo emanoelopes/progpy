@@ -72,6 +72,8 @@ PyWhatKit_DB.txt
 
 # Selenium stuff
 avamec/cookies/avamec_session.pkl
+avamec/meet/token.json
+avamec/meet/credentials.json
 
 # Secrets and sensitive data
 .env
