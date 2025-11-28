@@ -71,3 +71,4 @@ echo "   - exemplo_ata_google_meet.txt"
 echo ""
 echo "📖 Para mais informações, consulte o README.md"
 
+

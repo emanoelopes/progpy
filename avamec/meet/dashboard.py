@@ -11,7 +11,7 @@ from typing import Optional
 
 from config import (
     SPREADSHEET_ID, DASHBOARD_REFRESH_INTERVAL, NUM_GRUPOS, TURMAS,
-    OLLAMA_BASE_URL, OLLAMA_MODEL
+    OLLAMA_BASE_URL, OLLAMA_MODEL, DEFAULT_WORKSHEET_NAME
 )
 from google_integration import GoogleIntegration
 from monitor import MonitorSalas
@@ -37,6 +37,8 @@ if 'dados_carregados' not in st.session_state:
     st.session_state.dados_carregados = False
 if 'ultima_atualizacao' not in st.session_state:
     st.session_state.ultima_atualizacao = None
+if 'meeting_ativo' not in st.session_state:
+    st.session_state.meeting_ativo = None
 
 
 def inicializar_servicos():
@@ -128,32 +130,39 @@ def carregar_dados_planilha(spreadsheet_id: str, worksheet_name: Optional[str] =
         return False
 
 
-def atualizar_participantes_reais():
-    """
-    Atualiza lista de participantes reais.
-    Nota: Em produção, isso viria da Google Meet API.
-    Por enquanto, permite entrada manual ou simulação.
-    """
-    # TODO: Implementar integração real com Google Meet API
-    # Por enquanto, retorna estrutura vazia
-    participantes_por_grupo = {}
-    
-    # Placeholder para implementação futura
-    # participantes_por_grupo = {
-    #     1: [{'email': 'exemplo@email.com', 'nome': 'Exemplo'}],
-    #     ...
-    # }
-    
-    if st.session_state.monitor:
-        st.session_state.monitor.atualizar_participantes_reais(participantes_por_grupo)
+def obter_meeting_code():
+    """Obtém o código do meeting ativo."""
+    meeting_info = st.session_state.get('meeting_ativo')
+    if not meeting_info:
+        return None
+    return meeting_info.get('meet_link') or meeting_info.get('meeting_code')
 
 
 def exibir_metricas_gerais(turma: Optional[str] = None):
     """Exibe métricas gerais do monitoramento."""
     if not st.session_state.monitor:
+        st.warning("⚠️ Monitor não inicializado. Carregue os dados da planilha primeiro.")
         return
     
+    # Garante que o status foi calculado
+    if not st.session_state.monitor.status_salas:
+        st.session_state.monitor.calcular_status(turma=turma)
+    
     estatisticas = st.session_state.monitor.obter_estatisticas_gerais(turma=turma)
+    
+    # Debug: mostra informações se estiver tudo zerado
+    if estatisticas['total_esperado'] == 0:
+        total_participantes_esperados = len(st.session_state.monitor.participantes_esperados)
+        st.warning(
+            f"⚠️ **Atenção:** Total esperado está zerado.\n\n"
+            f"- Participantes esperados no monitor: {total_participantes_esperados}\n"
+            f"- Turma filtrada: {turma if turma else 'Todas'}\n"
+            f"- Status salas calculadas: {len(st.session_state.monitor.status_salas)}\n\n"
+            f"**Possíveis causas:**\n"
+            f"1. Filtro de turma não corresponde aos dados\n"
+            f"2. Dados da planilha não foram processados corretamente\n"
+            f"3. Colunas da planilha não foram mapeadas corretamente"
+        )
     
     col1, col2, col3, col4, col5 = st.columns(5)
     
@@ -167,14 +176,14 @@ def exibir_metricas_gerais(turma: Optional[str] = None):
         st.metric(
             "Total Presente",
             estatisticas['total_presente'],
-            delta=f"{estatisticas['percentual_presente']:.1f}%"
+            delta=f"{estatisticas['percentual_presente']:.1f}%" if estatisticas['total_esperado'] > 0 else "0%"
         )
     
     with col3:
         st.metric(
             "Total Ausente",
             estatisticas['total_ausente'],
-            delta=f"{estatisticas['percentual_ausente']:.1f}%",
+            delta=f"{estatisticas['percentual_ausente']:.1f}%" if estatisticas['total_esperado'] > 0 else "0%",
             delta_color="inverse"
         )
     
@@ -192,6 +201,8 @@ def exibir_metricas_gerais(turma: Optional[str] = None):
                 "Última Atualização",
                 f"{int(tempo_decorrido)}s atrás"
             )
+        else:
+            st.metric("Última Atualização", "N/A")
 
 
 def exibir_status_por_sala(turma: Optional[str] = None):
@@ -405,17 +416,83 @@ def main():
                 help="ID da planilha Google Sheets (encontrado na URL)"
             )
             worksheet_name = st.text_input(
-                "Nome da Aba (opcional)",
-                value="",
-                help="Deixe vazio para usar a primeira aba"
+                "Nome da Aba",
+                value=DEFAULT_WORKSHEET_NAME,
+                help=f"Nome da aba da planilha (padrão: {DEFAULT_WORKSHEET_NAME})"
             )
             
             if st.button("📥 Carregar Dados"):
                 if spreadsheet_id:
-                    worksheet = worksheet_name if worksheet_name else None
+                    # Usa a aba especificada ou o padrão
+                    worksheet = worksheet_name.strip() if worksheet_name.strip() else DEFAULT_WORKSHEET_NAME
                     carregar_dados_planilha(spreadsheet_id, worksheet)
                 else:
                     st.error("Por favor, informe o ID da planilha")
+        
+        # Configuração do Google Meet
+        st.subheader("📹 Google Meet")
+        meeting_source = st.radio(
+            "Fonte do Meeting",
+            ["Auto (Calendar)", "Link Manual"],
+            help="Auto: busca meeting ativo no Calendar | Manual: informe o link do meeting",
+            key="meeting_source"
+        )
+        
+        meeting_info = None
+        if meeting_source == "Auto (Calendar)":
+            if st.button("🔍 Buscar Meeting Ativo"):
+                try:
+                    with st.spinner("Buscando meeting ativo no Calendar..."):
+                        meeting_info = st.session_state.google_integration.obter_meeting_ativo()
+                        if meeting_info:
+                            st.session_state.meeting_ativo = meeting_info
+                            st.success(f"✅ Meeting encontrado: {meeting_info['title']}")
+                            st.info(f"🔗 Link: {meeting_info['meet_link']}")
+                        else:
+                            st.warning("⚠️ Nenhum meeting ativo encontrado no Calendar")
+                            st.info("💡 Dica: Verifique se há um evento do Google Meet acontecendo agora no seu Calendar")
+                except Exception as e:
+                    error_msg = str(e)
+                    st.error(f"❌ Erro: {error_msg}")
+                    
+                    # Detecta erro de API não habilitada
+                    if 'não está habilitada' in error_msg or 'has not been used' in error_msg or 'is disabled' in error_msg:
+                        st.warning("""
+                        **⚠️ Google Calendar API não habilitada**
+                        
+                        Para habilitar a API:
+                        1. Acesse o [Google Cloud Console](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com)
+                        2. Selecione o projeto: **133165406108**
+                        3. Clique em **"HABILITAR"**
+                        4. Aguarde alguns minutos para a propagação
+                        5. Tente novamente
+                        
+                        Ou use a opção **"Link Manual"** para informar o link do meeting diretamente.
+                        """)
+        else:
+            meet_link = st.text_input(
+                "Link do Google Meet",
+                help="Cole o link completo do meeting (ex: https://meet.google.com/abc-defg-hij)",
+                key="meet_link_input"
+            )
+            if meet_link and st.button("🔗 Conectar ao Meeting"):
+                try:
+                    with st.spinner("Conectando ao meeting..."):
+                        meeting_info = st.session_state.google_integration.obter_meeting_por_link(meet_link)
+                        if meeting_info:
+                            st.session_state.meeting_ativo = meeting_info
+                            st.success(f"✅ Conectado ao meeting: {meeting_info['meeting_code']}")
+                            st.info(f"🔗 Link: {meeting_info['meet_link']}")
+                except Exception as e:
+                    st.error(f"❌ Erro: {str(e)}")
+        
+        # Mostra informações do meeting ativo
+        if st.session_state.get('meeting_ativo'):
+            meeting_ativo = st.session_state.meeting_ativo
+            st.success(f"📹 Meeting Ativo: {meeting_ativo.get('title', meeting_ativo.get('meeting_code', 'N/A'))}")
+            if st.button("❌ Desconectar Meeting"):
+                st.session_state.meeting_ativo = None
+                st.rerun()
         
         # Filtro por turma
         st.subheader("🔍 Filtros")
@@ -425,6 +502,144 @@ def main():
             format_func=lambda x: "Todas" if x is None else f"Turma {x}"
         )
         
+        # Controles do Meeting
+        st.subheader("🎮 Controles do Meeting")
+        
+        meeting_code = obter_meeting_code()
+        if not meeting_code:
+            st.info("ℹ️ Configure um meeting primeiro para usar os controles")
+        else:
+            # Controle de Gravação
+            st.write("**📹 Gravação**")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                if st.button("▶️ Iniciar Gravação", type="primary"):
+                    try:
+                        with st.spinner("Iniciando gravação..."):
+                            resultado = st.session_state.google_integration.iniciar_gravacao(meeting_code)
+                            if resultado:
+                                st.success("✅ Gravação iniciada!")
+                            else:
+                                st.warning("⚠️ Não foi possível iniciar a gravação")
+                    except Exception as e:
+                        st.error(f"❌ Erro: {str(e)}")
+            
+            with col2:
+                if st.button("⏹️ Parar Gravação"):
+                    try:
+                        with st.spinner("Parando gravação..."):
+                            resultado = st.session_state.google_integration.parar_gravacao(meeting_code)
+                            if resultado:
+                                st.success("✅ Gravação parada!")
+                            else:
+                                st.warning("⚠️ Não foi possível parar a gravação")
+                    except Exception as e:
+                        st.error(f"❌ Erro: {str(e)}")
+            
+            # Status da Gravação
+            if st.button("🔍 Verificar Status da Gravação"):
+                try:
+                    status = st.session_state.google_integration.obter_status_gravacao(meeting_code)
+                    if status.get('gravando'):
+                        st.success(f"🔴 Gravando: {status.get('status', 'ativo')}")
+                    else:
+                        st.info(f"⚪ Não está gravando: {status.get('status', 'inativo')}")
+                except Exception as e:
+                    st.error(f"❌ Erro: {str(e)}")
+            
+            st.markdown("---")
+            
+            # Configuração de Breakout Rooms
+            st.write("**🏫 Salas Temáticas (Breakout Rooms)**")
+            
+            st.info("ℹ️ **Importante:** O número de salas já está configurado no Google Calendar e não será alterado para evitar perda de atribuição dos cursistas.")
+            
+            duracao_minutos = st.number_input(
+                "Duração (minutos)",
+                min_value=5,
+                max_value=120,
+                value=60,
+                help="Duração das salas temáticas em minutos (padrão: 60)"
+            )
+            
+            if st.button("⚙️ Configurar Duração das Salas"):
+                try:
+                    with st.spinner("Configurando duração das salas temáticas..."):
+                        resultado = st.session_state.google_integration.configurar_duracao_breakout_rooms(
+                            meeting_code, duracao_minutos
+                        )
+                        if resultado:
+                            st.success(f"✅ Duração configurada: {duracao_minutos} minutos")
+                            st.info("ℹ️ Número de salas permanece inalterado (configurado no Calendar)")
+                        else:
+                            st.warning("⚠️ Não foi possível configurar a duração")
+                except Exception as e:
+                    st.error(f"❌ Erro: {str(e)}")
+            
+            if st.button("🚀 Iniciar Salas Temáticas", type="primary"):
+                try:
+                    with st.spinner("Iniciando salas temáticas..."):
+                        resultado = st.session_state.google_integration.iniciar_breakout_rooms(meeting_code)
+                        if resultado:
+                            st.success("✅ Salas temáticas iniciadas!")
+                        else:
+                            st.warning("⚠️ Não foi possível iniciar as salas")
+                except Exception as e:
+                    st.error(f"❌ Erro: {str(e)}")
+            
+            st.markdown("---")
+            
+            # Listar Participantes da Sala Principal
+            st.write("**👥 Participantes da Sala Principal**")
+            if st.button("📋 Listar Participantes"):
+                try:
+                    with st.spinner("Buscando participantes da sala principal..."):
+                        participantes = st.session_state.google_integration.listar_participantes_sala_principal(meeting_code)
+                        
+                        if participantes:
+                            st.success(f"✅ {len(participantes)} participantes encontrados")
+                            
+                            # Cria DataFrame
+                            df_participantes = pd.DataFrame(participantes)
+                            
+                            # Exibe tabela
+                            st.dataframe(
+                                df_participantes[['nome', 'email', 'tipo']],
+                                use_container_width=True,
+                                hide_index=True
+                            )
+                            
+                            # Download CSV
+                            csv = df_participantes.to_csv(index=False)
+                            st.download_button(
+                                label="📥 Download CSV",
+                                data=csv,
+                                file_name=f"participantes_sala_principal_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                                mime="text/csv"
+                            )
+                            
+                            # Lista apenas emails
+                            emails = [p['email'] for p in participantes if p.get('email')]
+                            if emails:
+                                st.write("**📧 Emails dos Participantes:**")
+                                emails_texto = "\n".join(emails)
+                                st.text_area("Emails (um por linha)", emails_texto, height=200)
+                                
+                                st.download_button(
+                                    label="📥 Download Emails (TXT)",
+                                    data=emails_texto,
+                                    file_name=f"emails_participantes_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+                                    mime="text/plain"
+                                )
+                        else:
+                            st.warning("⚠️ Nenhum participante encontrado ou API não disponível")
+                            st.info("💡 A API do Google Meet pode ter limitações. Verifique se você tem permissões adequadas.")
+                            
+                except Exception as e:
+                    st.error(f"❌ Erro ao listar participantes: {str(e)}")
+                    st.info("💡 Isso pode ser normal - a API pode ter limitações ou requerer permissões especiais do Google Workspace.")
+        
         # Atualização automática
         st.subheader("🔄 Atualização")
         auto_refresh = st.checkbox("Atualização Automática", value=False)
@@ -432,12 +647,6 @@ def main():
             st.info(f"Atualizando a cada {DASHBOARD_REFRESH_INTERVAL}s")
             time.sleep(DASHBOARD_REFRESH_INTERVAL)
             st.rerun()
-        
-        if st.button("🔄 Atualizar Agora"):
-            if st.session_state.monitor:
-                atualizar_participantes_reais()
-                st.session_state.ultima_atualizacao = datetime.now()
-                st.rerun()
     
     # Conteúdo principal
     if not st.session_state.dados_carregados:

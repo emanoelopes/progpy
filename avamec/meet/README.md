@@ -17,9 +17,21 @@ Sistema Python com dashboard Streamlit em tempo real para monitorar e validar qu
 - Conta Google com acesso às APIs:
   - Google Sheets API
   - Google Meet API
-  - Google Calendar API (opcional)
+  - Google Calendar API (necessária para busca automática de meetings)
 - Ollama instalado e rodando localmente (para o agente de IA)
 - Credenciais OAuth2 do Google (arquivo `credentials.json`)
+
+### ⚙️ Habilitar APIs no Google Cloud Console
+
+Antes de usar, você precisa habilitar as seguintes APIs no Google Cloud Console:
+
+1. **Google Sheets API**: https://console.cloud.google.com/apis/library/sheets.googleapis.com
+2. **Google Meet API**: https://console.cloud.google.com/apis/library/meet.googleapis.com
+3. **Google Calendar API**: https://console.cloud.google.com/apis/library/calendar-json.googleapis.com
+
+**Projeto**: 133165406108
+
+Após habilitar, aguarde alguns minutos para a propagação.
 
 ## 🛠️ Instalação
 
@@ -220,6 +232,20 @@ meet/
      - Google Meet API
      - Google Sheets API
      - Google Calendar API
+
+### Erro: API não habilitada (accessNotConfigured)
+- **Erro**: `Google Calendar API has not been used in project... or it is disabled`
+- **Solução**:
+  1. Acesse o [Google Cloud Console - APIs](https://console.cloud.google.com/apis/library)
+  2. Selecione o projeto: **133165406108**
+  3. Habilite as seguintes APIs:
+     - [Google Calendar API](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com)
+     - [Google Sheets API](https://console.cloud.google.com/apis/library/sheets.googleapis.com)
+     - [Google Meet API](https://console.cloud.google.com/apis/library/meet.googleapis.com)
+  4. Aguarde alguns minutos para a propagação
+  5. Tente novamente
+  
+  **Alternativa**: Use a opção "Link Manual" no dashboard para informar o link do meeting diretamente, sem precisar do Calendar API.
 
 ### Erro ao Carregar Planilha
 - Verifique se o ID da planilha está correto

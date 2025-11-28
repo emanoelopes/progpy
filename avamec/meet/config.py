@@ -28,6 +28,8 @@ DASHBOARD_PORT = 8501
 # Configurações da Planilha
 # ID da planilha Google Sheets (será configurado via interface ou variável de ambiente)
 SPREADSHEET_ID = os.getenv('GOOGLE_SPREADSHEET_ID', '')
+# Nome padrão da aba da planilha
+DEFAULT_WORKSHEET_NAME = 'Turma-Grupo-Cursista-Zap'
 
 # Configurações dos Grupos
 NUM_GRUPOS = 10

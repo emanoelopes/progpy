@@ -8,4 +8,5 @@ google-api-python-client>=2.100.0
 google-apps-meet>=0.2.0
 requests>=2.31.0
 plotly>=5.17.0
+python-dateutil>=2.8.0
 
